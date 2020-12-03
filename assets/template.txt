@@ -1,0 +1,5 @@
+Madlib Game
+%s is a really %s person.
+He likes %s and %s on his free time.
+He once tripped on a %s and started crying.
+%s is a really %s person.
