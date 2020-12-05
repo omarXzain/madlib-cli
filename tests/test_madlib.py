@@ -1,5 +1,5 @@
 from madlib import __version__
-from madlib_cli.madlib import (parse,read_template,merge)
+from madlib_cli.madlib import read, parse, write, merge
 
 
 def test_version():
@@ -12,24 +12,16 @@ def test_read():
         expected = contents
         assert actual == expected
 
+
 def test_parse():
-    with open('assets/template.txt') as x:
-        valList = x.read()
-        actual = valList
-        expected = valList
-        assert actual == expected
+    expected = ["name", "adjective"]
+    received = parse("hello {name}, I am a {adjective} person")
+    assert expected == received
 
 
 def test_merge():
-    inputs = [ 'Madlib Game j is a really jj person. He likes  and jj on his free time. He once tripped on a j and started crying. j is a really j person.' ]
-    mergeStr = "tripped {}, really {} person {}?"
-    with open('assets/template.txt') as m:
-        mergeStr = m.read()
-        actual = mergeStr
-        expected = mergeStr
-    assert actual == expected
-    inputs = open('./assets/template.txt', 'r') 
-    content = inputs.read()	
-    inputs.close()
-    assert content == expected
-    return content
+    words = ['hungry', 'eat', 'find']
+    text = 'i was {} and i had to {} a fruit becuase i couldnt {} anything'
+    received = merge(text, words)
+    expected = 'i was hungry and i had to eat a fruit becuase i couldnt find anything'
+    assert expected == received
